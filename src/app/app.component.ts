@@ -14,13 +14,27 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   </formly-form>
   <button type="submit" class="btn btn-default">Submit</button>
   </form>
+
+  <pre>{{model | json}}</pre>
+  </div>
   `,
+  styleUrls: ['./app.component.scss'],
 })
 
 export class AppComponent {
   title = 'Angular NGX-Formly'
   form= new FormGroup({});
-  model = {};
+  model = {
+    email: "email@gmail.com",
+    terms_1: false,
+    terms: true,
+    date_of_birth: new Date(),
+    amount: 100,
+    name: "lskdfnlksdf",
+    description: "laksndlkansd↵asd↵nlkxclkzxc↵",
+    gender: 3
+  }
+
   fields: FormlyFieldConfig[] = [
     {
       key: 'name',
@@ -28,6 +42,7 @@ export class AppComponent {
       templateOptions: {
         label: 'Name',
         placeholder: 'Enter name',
+        required: true,
       }
     },
     {
@@ -37,6 +52,8 @@ export class AppComponent {
               type: 'email',
         label: 'Email',
         placeholder: 'Enter email',
+        minLength: 3,
+        maxLength: 20,
       }
     },
     {
@@ -46,6 +63,8 @@ export class AppComponent {
               type: 'number',
         label: 'Amount',
         placeholder: 'Enter amount',
+        min: 1,
+        max: 15
       }
     },
     {
