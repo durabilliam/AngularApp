@@ -11,9 +11,8 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   <p> This is an Example form using Angular,Formly,Material,Bottstrap</p>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <formly-form [form]="form" [fields]="fields" [model]="model">
-  </formly-form>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
   </form>
 
   <pre>{{model | json}}</pre>
@@ -131,6 +130,45 @@ export class AppComponent {
         ],
       },
     },
+    //Repeatable section
+    {
+      key: 'investments',
+      type: 'repeat',
+      templateOptions: {
+        addText: 'Add another investment',
+      },
+      fieldArray: {
+        fieldGroup: [
+          {
+            type: 'input',
+            key: 'investmentName',
+            templateOptions: {
+              label: 'Name of Investment:',
+              required: true,
+            },
+          },
+          {
+            type: 'datepicker',
+            key: 'investmentDate',
+            templateOptions: {
+              label: 'Date of Investment:',
+            },
+          },
+          {
+            type: 'input',
+            key: 'amount',
+            templateOptions: {
+              type: 'number',
+              label: 'Amount',
+              placeholder: 'Enter Amount',
+              min: 1,
+              max: 15
+            },
+          },
+        ]
+      }
+    }
+
   ];
 
   onSubmit() {
