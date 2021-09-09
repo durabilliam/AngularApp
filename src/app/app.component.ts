@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
+
 @Component({
   selector: 'app-root',
   template: `
@@ -16,10 +17,12 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   </form>
 
   <pre>{{model | json}}</pre>
+
   </div>
   `,
   styleUrls: ['./app.component.scss'],
 })
+
 
 export class AppComponent {
   title = 'Angular NGX-Formly'
@@ -53,7 +56,7 @@ export class AppComponent {
         label: 'Email',
         placeholder: 'Enter email',
         minLength: 3,
-        maxLength: 20,
+        maxLength: 50,
       }
     },
     {
@@ -66,6 +69,17 @@ export class AppComponent {
         min: 1,
         max: 15
       }
+    },
+    {
+      key: 'ip',
+      type: 'input',
+          templateOptions: {
+        label: 'IP Address (using custom validation declared in ngModule)',
+        required: true,
+      },
+      validators: {
+        validation: ['ip']
+      },
     },
     {
       key: 'date_of_birth',
@@ -121,5 +135,6 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.model)
+    console.log(this.model.description)
   }
 }
