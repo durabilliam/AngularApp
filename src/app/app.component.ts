@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
 
 @Component({
@@ -11,7 +11,8 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   <p> This is an Example form using Angular,Formly,Material,Bottstrap</p>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options"></formly-form>
+  <button type="button" mat-raised-button color="warn" (click)="options.resetModel()">Reset</button>
   <button type="submit" mat-raised-button color="primary">Submit</button>
   </form>
 
@@ -26,14 +27,15 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 export class AppComponent {
   title = 'Angular NGX-Formly'
   form= new FormGroup({});
+  options: FormlyFormOptions = {};
   model = {
-    email: "email@gmail.com",
+    email: "",
     terms_1: false,
-    terms: true,
-    date_of_birth: new Date(),
+    terms: false,
+    date_of_birth: '',
     amount: 100,
-    name: "lskdfnlksdf",
-    description: "laksndlkansd↵asd↵nlkxclkzxc↵",
+    name: "",
+    description: "",
     gender: 3
   }
 
@@ -50,12 +52,12 @@ export class AppComponent {
     {
       key: 'email',
       type: 'input',
+      hideExpression: '!model.name',
       templateOptions: {
               type: 'email',
         label: 'Email',
         placeholder: 'Enter email',
         minLength: 3,
-        maxLength: 50,
       }
     },
     {
