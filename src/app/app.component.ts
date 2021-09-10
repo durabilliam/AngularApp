@@ -38,7 +38,7 @@ export class AppComponent {
     terms_1: false,
     terms: false,
     date_of_birth: '',
-    amount: 100,
+    amount: 5,
     name: "",
     description: "",
     gender: 3
@@ -99,7 +99,7 @@ export class AppComponent {
     },
     {
       key: 'terms',
-          type: 'checkbox',
+      type: 'checkbox',
       templateOptions: {
         label: 'Accept terms',
         description: 'Please accept our terms',
@@ -107,7 +107,7 @@ export class AppComponent {
       },
     },
     {
-      key: 'terms',
+      key: 'terms_1',
       type: 'toggle',
       templateOptions: {
         label: 'Accept terms',
